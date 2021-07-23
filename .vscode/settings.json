@@ -2,5 +2,7 @@
     "git.allowForcePush": true,
     "git.allowNoVerifyCommit": true,
     "git.alwaysShowStagedChangesResourceGroup": true,
-    "git.path" :"c:/program files/git"
+    "git.path": "c:/program files/git",
+    "editor.suggest.showStatusBar": true,
+    "zenMode.hideStatusBar": false
 }
