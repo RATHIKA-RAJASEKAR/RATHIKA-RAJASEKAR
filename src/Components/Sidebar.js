@@ -11,8 +11,7 @@ const Sidebar = () => {
                     <div>
                         <h4 class="font-semibold text-lg text-gray-700 capitalize font-poppins tracking-wide">My React App</h4>
                         <span class="text-sm tracking-wide flex items-center space-x-1">
-                          
-                        </span>
+                                                  </span>
                     </div>
                 </div>
                 <ul class="space-y-2 text-sm">
