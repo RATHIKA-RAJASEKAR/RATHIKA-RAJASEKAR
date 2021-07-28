@@ -1,3 +1,7 @@
 span.material-icons.text-lg.leading-none.align-middle {
     display: none;
 }
+.dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  
