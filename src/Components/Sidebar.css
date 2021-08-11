@@ -1,7 +1,3 @@
-span.material-icons.text-lg.leading-none.align-middle {
-    display: none;
+.NavIcon {
+    display: inline-block !important;
 }
-.dropdown:hover .dropdown-menu {
-    display: block;
-  }
- 
