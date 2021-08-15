@@ -61,10 +61,35 @@ ripple="dark" onClick={handleOpen}>  <svg xmlns="http://www.w3.org/2000/svg" cla
         }}
       >
         <Fade in={open}>
-        
+          <div className={classes.paper}>
+           <div>
+         
+           <form className={classes.root} noValidate autoComplete="off">
+           <div class="container w-full">
     <h1>Customer Details</h1>
-  
-                     </Fade>
+  <div><TextField id="standard-basic" placeholder="Customer Name" label="Customer Name" /></div>
+  <div><TextField id="standard-basic" label="Mobile Number" /></div>
+  <div><TextField id="standard-basic" label="E-Mail Id" /></div>
+
+  <div><TextField id="standard-basic" label="Place" /></div>
+  <div><TextField id="standard-basic" label="Address" /></div>
+<div> <label for="Credit Limit">Credit Limit:</label>
+  <select name="Limit" id="Limit">
+    <option value="days">Days</option>
+    <option value="weeks">Weeks</option>
+    <option value="months">Months</option>
+    
+  </select></div>
+
+  <div><TextField id="standard-basic" label="Offers" /></div>
+  </div>
+  </form>
+   
+    <button type="submit" class="registerbtn">Submit</button>
+   
+
+              </div></div>
+        </Fade>
       </Modal>
     </div></div>
   );

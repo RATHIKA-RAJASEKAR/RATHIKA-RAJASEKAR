@@ -1,8 +1,4 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-import '../Pages/page.css';
+import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -10,157 +6,146 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
-import React, { useState, useEffect } from 'react'
 
 
+export default class Suppliers extends Component {
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
+    DATA;
+
+constructor(props) {
+        super(props);
+
+        this.eventName = this.eventName.bind(this);
+        this.eventNumber = this.eventNumber.bind(this);
+        this.eventEmail = this.eventEmail.bind(this);
+        this.eventGstin = this.eventGstin.bind(this);
+        this.eventPlace = this.eventPlace.bind(this);
+        this.eventAddress = this.eventAddress.bind(this);
+
+        this.onFormSubmit = this.onFormSubmit.bind(this);
+
+        this.state = {
+            name: '',
+            number:'',
+            email: '',
+            gstin:'',
+            place: '',
+            address: ''
+        }
+
+
+    }
     
-    modal: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    paper: {
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-    },
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-        width: '25ch',
-      },
-      button: {
-        display: 'block',
-        marginTop: theme.spacing(2),
-      },
-      formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
-      },
-    },
-  }),
-);
 
-export default function Suppliers() {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const handleClose = () => {
-    setOpen(false);
+
+    // Event handlers
+    eventName(event) {
+        this.setState({ name: event.target.value })
+    }
+     eventNumber(event) {
+        this.setState({ number: event.target.value })
+    }
+
+    eventEmail(event) {
+        this.setState({ email: event.target.value })
+    }
+
+    eventGstin(event) {
+        this.setState({ gstin: event.target.value })
+    }
+
+    eventPlace(event) {
+      this.setState({ place: event.target.value })
+    }   
+     eventAddress(event) {
+        this.setState({ address: event.target.value })
+    } 
+
+    onFormSubmit(event) {
+      event.preventDefault()
+    }
+
+
+    componentDidMount() {
+        this.DATA = JSON.parse(localStorage.getItem('suppliers_form'));
+
+        setMyArray(oldArray => [...oldArray, newElement]);
+    
+
+        if (localStorage.getItem('suppliers_form')) {
+            this.setState({
+                name: this.DATA.name,
+                number: this.DATA.number,
+                email: this.DATA.email,
+                gstin: this.DATA.gstin,
+                place: this.DATA.place,
+                address: this.DATA.address
+            })
+        } else {
+            this.setState({
+                name: '',
+                number:'',
+                email: '',
+                gstin: '',
+                place: '',
+                address:''
+            })
+        }
+
+
+  const suppliersForm = () => {
+  let valueObj = {
+    name: name,
+    number: number,
+    mail:mail,
+    gstin: gstin,
+    place: place,
+    address:address
   };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  
-  const [suppliers, setSuppliers] = useState(ALL_SUPPLIERS)
-
-
- const [value, setValue] = React.useState( '');
- const [number, setNumber] =  React.useState( '');
- const [mail, setMail] = React.useState( '');
- const [gstin, setGstin] =  React.useState( '');
- const [place, setPlace] =  React.useState( '');
- const [address, setAddress] =  React.useState( '');
-
-const handleName = event => {
-  console.log('Name ', event.target.value)
-  setName(event.target.value)
+  myArray.push(valueObj);
+  localStorage.setItem('myArray', JSON.stringify(myArray));
+  console.log(localStorage.getItem('myArray'));
 }
 
-const handleNumber = event => {
-  console.log('Number ', event.target.value)
-  setNumber(event.target.value)
-}
-const handleSubmitForm = event => {
-  event.preventDefault()
-  // do something when submitting the form
-}
-const handleSubmitForm = event => {
-  event.preventDefault()
-  //check whether the name is not empty and the amount is not negative
-  if (name !== '' && number > 0) {
-    // single expense object
-    const suppliers = { name, number }
-    // do not override previous values in the array
-    // use spread operator to access previous values
-    setSuppliers([...suppliers, supplier])
+       
+        var suppliers = localStorage.getItem('suppliers_form');
+        localStorage.getItem('suppliers_form');
+      var usestate = { name:" ",number: " ",  email:" " , gstin:" ", place:" ", address:" "};
+    }
 
-    // clean input fields
-    setName('')
-    setAmount('')
-  } else {
-    console.log('Invalid expense name or the amount')
-  }
-}
-const ALL_SUPPLIERS = localStorage.getItem('suppliers')
-  ? JSON.parse(localStorage.getItem('suppliers'))
-  : []
 
- useEffect(() => {
-  localStorage.setItem('suppliers', JSON.stringify(suppliers))
-}, [suppliers])
-  
-  return (
-    <div className="container d-flex align-items-center flex-column">
-    <div className="flex flex-row-reverse mx-2 px-3 my-5 ">
-<button className="flex bg-blue-500 py-3 px-3 rounded hover:bg-blue-200"
-color="blue"
-buttonType="filled" type="button" size="regular"
-rounded={false}
-block={false}
-iconOnly={false}
-ripple="dark" onClick={handleOpen}>  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-</svg> 
-      <span>Add Suppliers</span> 
-      </button>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <div className={classes.paper}>
-           <div>
-                
+    
+
+
+   render() {
+        return (
    
+  <div className="form ">
    
-    <form className={classes.root} noValidate autoComplete="off">
-    <div class="container w-full">
+    <form onSubmit={this.onFormSubmit} >
+    <div className=" text-center container w-full">
+    <h1 className=" my-8 text-lg font-bold">SUPPLIER DETAILS</h1>
           <div>
+         
           <TextField
-        id="name"
         label="Supplier Name"
         variant="outlined"
         color="secondary"
-        value={name} type="text" onChange={onChange}
+        name="name" type="text"   onChange={this.eventName} required 
       /></div>
       <div>
      <TextField
-        id="number"
         label="Mobile Number"
         variant="outlined"
         color="secondary"
-        value={number} type="number" onChange={onChange}
-      /></div>
+        name="number" type="text"  onChange={this.eventNumber} required     /></div>
      <div> 
        <TextField
         id="mail"
         label="E-Mail Id"
         variant="outlined"
         color="secondary"
-        value={mail} type="text" onChange={onChange}
+        name="email" type="text"  onChange={this.eventEmail} required 
       /></div>
        <div> 
        <TextField
@@ -168,7 +153,7 @@ ripple="dark" onClick={handleOpen}>  <svg xmlns="http://www.w3.org/2000/svg" cla
         label="GSTIN"
         variant="outlined"
         color="secondary"
-        value={gstin} type="text" onChange={onChange}
+        name="gstin" type="text"  onChange={this.eventGstin} required  
       /></div>
        <div> 
        <TextField
@@ -176,42 +161,50 @@ ripple="dark" onClick={handleOpen}>  <svg xmlns="http://www.w3.org/2000/svg" cla
         label="Place of Supply"
         variant="outlined"
         color="secondary"
-        value={place} type="text" onChange={onChange}
+        name="place" type="text"  onChange={this.eventPlace}  required 
       /></div>
         <div> <TextareaAutosize 
        aria-label="maximum height"
        maxRows={4}
         placeholder="Address"
-        value={address} type="text" onChange={onChange} />
+        name="address" type="text" onChange={this.eventAddress}required   />
 
-      </div><div>
+      </div>
+      <div className="text-center my-5" >
+       <label for="Credit Period">Credit Period:</label>
+  <select className=" inline" name="Period" id="Period">
+   <option value="none">None</option>
+    <option value="days">Days</option>
+    <option value="weeks">Weeks</option>
+    <option value="months">Months</option>
+    
+  </select>
+  </div>
+  <div> 
+       <TextField
+        id="outlined-secondary"
+        label="Credit Limit"
+        variant="outlined"
+        color="secondary"
+        name="limit" type="text"  onChange={this.eventlimit}  required 
+      /></div>
+
+      <div>
+       <button type="submit" value ="submit" class="registerbtn">Submit</button>
+
+   
       </div>
       </div>
   </form>
-   
-    <button type="submit" class="registerbtn">Submit</button>
-   
+   <div></div>
 
-              </div></div>
-        </Fade>
-      </Modal>
-    </div>
-    <div className="content text-center my-5 ">
-<h1 className="text-lg"> Suppliers Details</h1>
-const List = ({ suppliers }) => (
-  <div>
-    <ListGroup>
-      {suppliers.map(item => (
-        <ListGroupItem key={item.id}>
-          {item.name} -  {item.number}
-        </ListGroupItem>
-      ))}
-    </ListGroup>
-  </div>
-)
-</div>
-    </div>
+   <h1>DETAILS</h1>
+  <p className="mb-20" suppliersForm> {suppliersForm} </p>
+       </div>
 
    
-  );
+   );
+    }
 }
+
+

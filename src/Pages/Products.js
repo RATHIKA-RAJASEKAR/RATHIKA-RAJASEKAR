@@ -92,7 +92,39 @@ ripple="dark" onClick={handleOpen}>  <svg xmlns="http://www.w3.org/2000/svg" cla
    
     <form className={classes.root} noValidate autoComplete="off">
     <div class="container w-full">
-   
+    <form className={classes.root} noValidate autoComplete="off">
+      <div><TextField
+        id="outlined-secondary"
+        label="Product Name"
+        variant="outlined"
+        color="secondary"
+      />
+     <TextField
+        id="outlined-secondary"
+        label="Category"
+        variant="outlined"
+        color="secondary"
+      /></div>
+     <div> 
+       <TextField
+        id="outlined-secondary"
+        label="Item Code"
+        variant="outlined"
+        color="secondary"
+      /></div>
+         <TextareaAutosize 
+       aria-label="maximum height"
+       maxRows={4}
+        placeholder="Item Describtion" />
+      
+       <TextField
+        id="outlined-secondary"
+        label="Pricing"
+        variant="outlined"
+        color="secondary"
+      />
+      
+    </form>
 
   </div>
   </form>
