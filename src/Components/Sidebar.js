@@ -16,16 +16,14 @@ justify-content: flex-start;
 align-items: center;
 `;
 
-const NavIcon = styled(Link)`
+const NavIcon = styled.a`
  margin-left  :2rem ;
  margin-top  :2rem ;
- font-size: 3rem;
+ font-size: 2rem;
  height: 80px;
- justify-content: inline;
+ justify-content: flex-start;
  align-items:center;
- display: inline !important;
-
- `;
+  `;
  const SidebarNav = styled.nav`
  background: #15171c;
  width: 250px;
@@ -54,18 +52,20 @@ const Sidebar = () => {
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
         <Nav>
-          <NavIcon to='#'>
+         <NavIcon to='#'>
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
-           <h1 className="center ml-200 white">
-            Cynzo
-          </h1>
+          <div className="flex-row-reverse flex "> Profile
+          </div>
         </Nav>
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
             <NavIcon to='#'>
               <AiIcons.AiOutlineClose onClick={showSidebar} />
             </NavIcon>
+            <h1 className="flex-row-reverse text-lg font-bold ml-20 text-white">
+            Cynzo
+          </h1>
             {SidebarData.map((item, index) => {
               return <SubMenu item={item} key={index} />;
             })}
