@@ -1,18 +1,10 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
-
+import Modal from './Modal.js';
 
 export default class Suppliers extends Component {
-
-    DATA;
-
-constructor(props) {
+    constructor(props) {
         super(props);
 
         this.eventName = this.eventName.bind(this);
@@ -21,8 +13,10 @@ constructor(props) {
         this.eventGstin = this.eventGstin.bind(this);
         this.eventPlace = this.eventPlace.bind(this);
         this.eventAddress = this.eventAddress.bind(this);
+        this.eventLimit = this.eventLimit.bind(this);
+        this.eventPeriod = this.eventPeriod.bind(this);
+        this.submitFun = this.submitFun.bind(this);
 
-        this.onFormSubmit = this.onFormSubmit.bind(this);
 
         this.state = {
             name: '',
@@ -30,12 +24,15 @@ constructor(props) {
             email: '',
             gstin:'',
             place: '',
-            address: ''
+            address: '',
+            limit:'',
+            period: '',
+
+         formData:[]   
         }
 
 
     }
-    
 
 
     // Event handlers
@@ -58,71 +55,80 @@ constructor(props) {
       this.setState({ place: event.target.value })
     }   
      eventAddress(event) {
+        console.log(event.target.value);
         this.setState({ address: event.target.value })
+        
+    } 
+     eventLimit(event) {
+        console.log(event.target.value);
+        this.setState({ limit: event.target.value })
+        
+    } 
+     eventPeriod(event) {
+        console.log(event.target.value);
+        this.setState({ period: event.target.value })
+        
     } 
 
-    onFormSubmit(event) {
-      event.preventDefault()
-    }
 
 
-    componentDidMount() {
-        this.DATA = JSON.parse(localStorage.getItem('suppliers_form'));
-
-        setMyArray(oldArray => [...oldArray, newElement]);
-    
-
-        if (localStorage.getItem('suppliers_form')) {
-            this.setState({
-                name: this.DATA.name,
-                number: this.DATA.number,
-                email: this.DATA.email,
-                gstin: this.DATA.gstin,
-                place: this.DATA.place,
-                address: this.DATA.address
-            })
-        } else {
-            this.setState({
-                name: '',
-                number:'',
-                email: '',
-                gstin: '',
-                place: '',
-                address:''
-            })
-        }
-
-
-  const suppliersForm = () => {
-  let valueObj = {
-    name: name,
-    number: number,
-    mail:mail,
-    gstin: gstin,
-    place: place,
-    address:address
+    submitFun() {
+  let obj = {
+    name: this.state.name,
+    number: this.state.number,
+    email:this.state.email,
+    gstin: this.state.gstin,
+    place: this.state.place,
+    address :this.state.address,
+    limit: this.state.limit,
+    period :this.state.period
   };
-  myArray.push(valueObj);
-  localStorage.setItem('myArray', JSON.stringify(myArray));
-  console.log(localStorage.getItem('myArray'));
+   console.log(" data");
+
+
+   let formdata=this.state.formData;
+   formdata.push(obj);
+   this.setState({ formData: formdata,
+            name: '',
+            number:'',
+            email: '',
+            gstin:'',
+            place: '',
+            address: '',
+            limit:'',
+            period: '',   },()=>{
+    console.log(this.state.formData);
+
+    })
+
+  
+
+  /*console.log(obj);
+  array.push(obj);
+  localStorage.setItem('suppliers', JSON.stringify(array));
+  console.log(localStorage.getItem('suppliers'));*/
 }
 
-       
-        var suppliers = localStorage.getItem('suppliers_form');
-        localStorage.getItem('suppliers_form');
-      var usestate = { name:" ",number: " ",  email:" " , gstin:" ", place:" ", address:" "};
-    }
 
+   componentDidMount(){
+    localStorage.setItem('suppliers',[]);
 
-    
+   }
 
 
    render() {
+    const {
+        name,number,email,gstin,place,address,limit,period,formData
+          }=this.state
+
+    const disableButton = !( name && number && email && gstin && place && address && limit && period );      
+
         return (
-   
-  <div className="form ">
-   
-    <form onSubmit={this.onFormSubmit} >
+  
+
+
+  <div className="container">
+    <form>
     <div className=" text-center container w-full">
     <h1 className=" my-8 text-lg font-bold">SUPPLIER DETAILS</h1>
           <div>
@@ -131,29 +137,27 @@ constructor(props) {
         label="Supplier Name"
         variant="outlined"
         color="secondary"
-        name="name" type="text"   onChange={this.eventName} required 
-      /></div>
-      <div>
+        name="name" type="text"  value={this.state.name} onChange={this.eventName} required 
+      />
      <TextField
         label="Mobile Number"
         variant="outlined"
         color="secondary"
-        name="number" type="text"  onChange={this.eventNumber} required     /></div>
-     <div> 
-       <TextField
+        name="number" type="text" value={this.state.number} onChange={this.eventNumber} required     /></div>
+       <div><TextField
         id="mail"
         label="E-Mail Id"
         variant="outlined"
         color="secondary"
-        name="email" type="text"  onChange={this.eventEmail} required 
-      /></div>
-       <div> 
+        name="email" type="text" value={this.state.email} onChange={this.eventEmail} required 
+      />
+       
        <TextField
         id="gstin"
         label="GSTIN"
         variant="outlined"
         color="secondary"
-        name="gstin" type="text"  onChange={this.eventGstin} required  
+        name="gstin" type="text" value={this.state.gstin} onChange={this.eventGstin} required  
       /></div>
        <div> 
        <TextField
@@ -161,49 +165,89 @@ constructor(props) {
         label="Place of Supply"
         variant="outlined"
         color="secondary"
-        name="place" type="text"  onChange={this.eventPlace}  required 
-      /></div>
-        <div> <TextareaAutosize 
+        name="place" type="text" value={this.state.place} onChange={this.eventPlace}  required 
+      /> <TextareaAutosize 
        aria-label="maximum height"
        maxRows={4}
         placeholder="Address"
-        name="address" type="text" onChange={this.eventAddress}required   />
+        name="address" type="text" value={this.state.address} onChange={this.eventAddress} required   />
 
       </div>
-      <div className="text-center my-5" >
-       <label for="Credit Period">Credit Period:</label>
-  <select className=" inline" name="Period" id="Period">
-   <option value="none">None</option>
+      <div> <label className="text-lg"  htmlFor="Credit Limit">Credit Limit:</label>
+  <select className="my-5 mx-5 p-2" name="Limit" id="Limit"  value={this.state.limit} onChange={this.eventLimit} >
     <option value="days">Days</option>
     <option value="weeks">Weeks</option>
     <option value="months">Months</option>
     
   </select>
-  </div>
-  <div> 
        <TextField
         id="outlined-secondary"
-        label="Credit Limit"
+        label="CreditPeriod"
         variant="outlined"
         color="secondary"
-        name="limit" type="text"  onChange={this.eventlimit}  required 
-      /></div>
-
+        name="period" type="text" value={this.state.period} onChange={this.eventPeriod}  required  /></div>
       <div>
-       <button type="submit" value ="submit" class="registerbtn">Submit</button>
+       <button type="button" onClick={this.submitFun} value ="submit" className="registerbtn" disabled={disableButton}>Submit</button>
 
    
       </div>
       </div>
   </form>
-   <div></div>
+   
 
-   <h1>DETAILS</h1>
-  <p className="mb-20" suppliersForm> {suppliersForm} </p>
-       </div>
+  <div>
+    <main>
+        <h1>React Modal</h1>
+        <Modal show={this.state.show} handleClose={this.hideModal}>
+          <p>Modal</p>
+        </Modal>
+        <button type="button" onClick={this.showModal}>
+          Open
+        </button>
+      </main>
+  </div> 
+   <h1 className="text-center my-6 text-lg font-bold">DETAILS</h1>
+   <div className="tabledetails text-center">
+  
+<table className="mytable text-center">
+<thead>
+    <tr className="headerrow">
+    <th>Name</th>
+    <th>Mobile Number</th>
+    <th>E-Mail ID</th>
+    <th>GSTIN</th>
+    <th>Place</th>
+    <th>Address</th>
+    <th>Credit Limit</th>
+    <th>Credit Period</th>
+   </tr>
+   </thead>
+   <tbody>
+
+    {this.state.formData.map(formData =>
+
+   <tr className="valuerow">    
+    <td>{formData.name}</td>
+    <td>{formData.number}</td>
+    <td>{formData.email}</td>
+    <td>{formData.gstin}</td>
+    <td>{formData.place}</td>
+    <td>{formData.address}</td>
+    <td>{formData.limit}</td>
+    <td>{formData.period}</td>
+      </tr>
+      )}
+      </tbody>
+</table>
+  
+   
+   </div>
+
+    </div>
 
    
    );
+
     }
 }
 
