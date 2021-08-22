@@ -55,9 +55,7 @@ const Sidebar = () => {
          <NavIcon to='#'>
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
-          <div className="flex-row-reverse flex "> Profile
-          </div>
-        </Nav>
+         </Nav>
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
             <NavIcon to='#'>

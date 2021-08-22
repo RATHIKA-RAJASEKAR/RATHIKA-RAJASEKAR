@@ -48,16 +48,22 @@ body > div.makeStyles-modal-1 > div.makeStyles-paper-2 > div > form{
 .makeStyles-root-3 > * {
     width: auto !important;
     }
-textarea {
-    min-width: 23%;
-    min-height: 57px;
-    padding: 5px;
-    margin: 7px 16px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #3332334a;
-    border-radius: 5px;
-}
+    textarea {
+        min-width: 43%;
+        min-height: 57px;
+        padding: 5px;
+        margin: 6px 17px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #3332334a;
+        border-radius: 5px;
+    }
+    select#Limit {
+        background: #d2cece;
+        padding: 11px 11px;
+        border-radius: 17px;
+        margin: 18px 12px;
+    }
 .dropdownselect{
      padding: 5px;
     margin: 10px 16px;
@@ -99,9 +105,10 @@ av.sc-jSFjdj.bYfSLW {
     text-align: center;
     margin: 10px;
     padding: 3px 4px;
+    margin: 10px 163px;
     
 }
-.headerrow > th {
+/*.headerrow > th {
     padding: 23px;
     border: 1px solid #848080;
     text-align: left;
@@ -117,3 +124,4 @@ td {
         padding: 19px;
 
 }
+**/
