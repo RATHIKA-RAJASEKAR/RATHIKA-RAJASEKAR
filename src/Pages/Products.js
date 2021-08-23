@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import { FiPlus } from "react-icons/fi";
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -8,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Popover from '@material-ui/core/Popover';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
+import './page.css';
 
 
 export default class Products extends Component {
@@ -142,7 +142,7 @@ export default class Products extends Component {
                               <div>
                                 <TextField id="standard-basic"
                                variant="outlined"
-                               color="secondary"
+                                
                                 label="Product Name" value={this.state.name} onChange={this.eventName} required  />
 
                                 <label className="text-lg" htmlFor=" offers">Category :</label>
@@ -157,12 +157,12 @@ export default class Products extends Component {
                             <div>
                               <TextField id="standard-basic" 
                                variant="outlined"
-                               color="secondary"
+                                
                                label="Item Code" 
                                value={this.state.icode} onChange={this.eventIcode}  required />
                               <TextField id="standard-basic"
                                variant="outlined"
-                               color="secondary"
+                                
                                label="Item Describtion" 
                                value={this.state.idesc} onChange={this.eventIdesc}  required /></div>
                             <Divider />
@@ -190,17 +190,17 @@ export default class Products extends Component {
                             <div>
                             <TextField id="standard-basic" 
                              variant="outlined"
-                             color="secondary"
+                              
                              label="Sales Price" 
                              value={this.state.sprice} onChange={this.eventSprice} required  />
                             <TextField id="standard-basic"
                              variant="outlined"
-                             color="secondary"
+                              
                              label="Purchase Price" 
                              value={this.state.pprice} onChange={this.eventPprice} required  />
                             <TextField id="standard-basic" 
                              variant="outlined"
-                             color="secondary"
+                              
                              label="GST" required /></div>
                              <div>
                              <button type="button" onClick={this.submitFun} value="submit" 

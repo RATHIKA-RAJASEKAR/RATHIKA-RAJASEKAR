@@ -7,9 +7,11 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
+import './page.css';
 
 
-export default class Suppliers extends Component {
+
+export default class Customer extends Component {
     constructor(props) {
         super(props);
 
@@ -56,12 +58,12 @@ export default class Suppliers extends Component {
 
     eventOffer(event) {
         console.log(event.target.value);
-        this.setState({ data: event.target.value })
+        this.setState({ offer: event.target.value })
     }
 
     eventData(event) {
         console.log(event.target.value);
-        this.setState({ offer: event.target.value })
+        this.setState({ data: event.target.value })
     }
     submitFun() {
         let obj = {
@@ -133,23 +135,22 @@ export default class Suppliers extends Component {
                           <div>
                             <TextField id="standard-basic" label="Customer Name" 
                            variant="outlined"
-                           color="secondary"
+                           color="#063970"
                            name="name" type="text" value={this.state.name} onChange={this.eventName} required/>
 
                           <TextField id="standard-basic" label="Mobile Number"
                            variant="outlined"
-                           color="secondary"
-                          type="text" 
+                           type="text" 
                           name="number"
                           value={this.state.number} onChange={this.eventNumber} required /></div>
 
                           <div><TextField id="standard-basic" label="E-Mail Id"  variant="outlined"
-                                color="secondary"
+                                 
                                  type="text" 
                                  name="email" value={this.state.email} onChange={this.eventEmail} required />
 
                             <TextField id="standard-basic" label="Place"  variant="outlined"
-                                color="secondary"
+                                 
                                 type="text" 
                                 name="place"
                                 value={this.state.place} onChange={this.eventPlace} required /></div>
@@ -161,28 +162,28 @@ export default class Suppliers extends Component {
 
                             <div className="text-center "><input type="radio" id="B2C" name="ctype" value=" B2C "
                              variant="outlined"
-                             color="secondary"
+                              
                              required />
                               <label className="mx-2 my-2" htmlFor="B2C">B2C</label></div>
                               <TextField id="standard-basic" label="GSTIN"  variant="outlined"
-                                color="secondary"
+                                 
                                 name="gstin" type="text" value={this.state.gstin} onChange={this.eventGstin} required />
                           </div> */}
                           <div>
-                             <TextareaAutosize className="w-full mx-5 my-3 align-center"
+                             <TextareaAutosize 
                             aria-label="maximum height"
                             maxRows={4}
                             placeholder="Address"
                             name="address" type="text"  variant="outlined"
-                            color="secondary"
+                             
                             value={this.state.address} onChange={this.eventAddress} required />
 
                           </div>
-                          <div className="dropdownselect">
-                            <label className="text-lg" htmlFor=" offer">Offer :</label>
-                            <select className="my-5 mx-5 p-2" name="offer" id="offer"
+                          <div >
+                            <label className=" dropdown-name text-lg" htmlFor=" offer">Offer :</label>
+                            <select className="dropdown-box my-5 mx-5 p-2" name="offer" id="offer"
                              variant="outlined"
-                             color="secondary"
+                              
                              type="text" value={this.state.offer} onChange={this.eventOffer} required>
                               <option value="zero">none</option>
                               <option value="one">10 %</option>
@@ -191,7 +192,7 @@ export default class Suppliers extends Component {
 
                             </select>
                             <TextField id="standard-basic" label="data"  variant="outlined"
-                                color="secondary" name="data"
+                                  name="data"
                                 type="text" value={this.state.data} onChange={this.eventData} required /></div>
 
                          <button type="button" onClick={this.submitFun} value="submit" className="registerbtn" disabled={disableButton}>Submit</button>

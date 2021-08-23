@@ -7,6 +7,7 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
+import './page.css';
 
 
 export default class Suppliers extends Component {
@@ -143,25 +144,25 @@ export default class Suppliers extends Component {
                             <TextField
                                 label="Supplier Name"
                                 variant="outlined"
-                                color="secondary"
+                                 
                                 name="name" type="text" value={this.state.name} onChange={this.eventName} required />
                             <TextField
                                 label="Mobile Number"
                                 variant="outlined"
-                                color="secondary"
+                                 
                                 name="number" type="text" value={this.state.number} onChange={this.eventNumber} required /></div>
                         <div>
                             <TextField
                             id="mail"
                             label="E-Mail Id"
                             variant="outlined"
-                            color="secondary"
+                             
                             name="email" type="text" value={this.state.email} onChange={this.eventEmail} required  />
                             <TextField
                                 id="gstin"
                                 label="GSTIN"
                                 variant="outlined"
-                                color="secondary"
+                                 
                                 name="gstin" type="text" value={this.state.gstin} onChange={this.eventGstin} required
                             /></div>
                         <div>
@@ -169,7 +170,7 @@ export default class Suppliers extends Component {
                                 id="outlined-secondary"
                                 label="Place of Supply"
                                 variant="outlined"
-                                color="secondary"
+                                 
                                 name="place" type="text" value={this.state.place} onChange={this.eventPlace} required />
                             <TextareaAutosize
                                 aria-label="maximum height"
@@ -189,7 +190,7 @@ export default class Suppliers extends Component {
                                 id="outlined-secondary"
                                 label="CreditPeriod"
                                 variant="outlined"
-                                color="secondary"
+                                 
                                 name="period" type="text" value={this.state.period} onChange={this.eventPeriod} required /></div>
                         <div>
                             <button type="button" onClick={this.submitFun} value="submit" className="registerbtn" disabled={disableButton}>Submit</button>
