@@ -2,6 +2,6 @@
 
 export default function Sales(){
 	return(
-		<div> Sales</div>
+		<div> Sales  Pages</div>
 		)
 }
